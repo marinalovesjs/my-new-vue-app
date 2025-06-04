@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тайный блок</title>
+    <style>
+        #secretBlock {
+            width: 200px;
+            height: 200px;
+            background-color: teal;
+            display: none;
+            margin-top: 20px;
+            border-radius: 12px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            background: darkslateblue;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Тайный цветной блок</h1>
+<button onclick="toggleBlock()">Показать / Скрыть</button>
+<div id="secretBlock"></div>
+
+<script>
+    function toggleBlock() {
+        const block = document.getElementById("secretBlock");
+        if (block.style.display === "none") {
+            block.style.display = "block";
+            block.style.backgroundColor = getRandomColor();
+        } else {
+            block.style.display = "none";
+        }
+    }
+
+    function getRandomColor() {
+        const colors = ["teal", "coral", "crimson", "darkgreen", "indigo", "chocolate"];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+</script>
+
+</body>
+</html>
