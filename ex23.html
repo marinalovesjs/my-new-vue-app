@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Умная кнопка</title>
+    <style>
+        button {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #feb47b, #ff7e5f);
+        }
+    </style>
+</head>
+<body>
+<button onclick="handleClick()">Нажми на меня</button>
+
+<script>
+    function handleClick() {
+        const name = prompt("Как тебя зовут?");
+        if (name) {
+            alert("Приятно познакомиться, " + name + "!");
+            console.log("Пользователь: " + name);
+        } else {
+            alert("Ты не ввёл имя :(");
+        }
+    }
+</script>
+</body>
+</html>
