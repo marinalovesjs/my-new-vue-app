@@ -3,12 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Проверка возраста</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 40px;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #2a7f62;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2a7f62;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #246c55;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
 </head>
+
 <body>
 <h2>Вход на сайт</h2>
 
-<label>Имя: <input type="text" id="name"></label><br><br>
-<label>Возраст: <input type="number" id="age"></label><br><br>
+<label>Имя: <input type="text" id="name"></label>
+<label>Возраст: <input type="number" id="age"></label>
 
 <button onclick="checkAccess()">Проверить</button>
 
