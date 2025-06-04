@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Мини-анкета</title>
+  <style>
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 8px;
+      font-size: 16px;
+      width: 250px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: seagreen;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      font-style: italic;
+      color: darkslategray;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Анкета</h1>
+<input type="text" id="name" placeholder="Как тебя зовут?">
+<input type="text" id="city" placeholder="Откуда ты?">
+<input type="number" id="age" placeholder="Сколько тебе лет?">
+<button onclick="showInfo()">Показать информацию</button>
+
+<div id="output"></div>
+
+<script>
+  function showInfo() {
+    const name = document.getElementById('name').value;
+    const city = document.getElementById('city').value;
+    const age = document.getElementById('age').value;
+
+    const message = `Привет, ${name} из города ${city}! Тебе ${age} лет — отличное время для новых открытий! 🚀`;
+
+    document.getElementById('output').textContent = message;
+  }
+</script>
+
+</body>
+</html>
