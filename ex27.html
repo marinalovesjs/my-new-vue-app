@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Проверка возраста</title>
+    <style>
+        input {
+            padding: 8px;
+            font-size: 16px;
+            margin: 10px;
+            width: 80px;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            background: #5c2a9d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Сколько тебе лет?</h1>
+<input type="number" id="age" placeholder="Возраст">
+<button onclick="checkAge()">Проверить</button>
+<div id="result"></div>
+
+<script>
+    function checkAge() {
+        const age = Number(document.getElementById('age').value);
+        let message = "";
+
+        if (age >= 0 && age < 18) {
+            message = "Ты ещё подросток 🌱";
+        } else if (age >= 18 && age <= 60) {
+            message = "Ты взрослый человек 💼";
+        } else if (age > 60) {
+            message = "Ты пенсионер 👴👵";
+        } else {
+            message = "Введите корректный возраст!";
+        }
+
+        document.getElementById('result').textContent = message;
+    }
+</script>
+
+</body>
+</html>
