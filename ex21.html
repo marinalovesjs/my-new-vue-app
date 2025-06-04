@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор</title>
+</head>
+<body>
+<h2>Калькулятор скидки</h2>
+
+<label>Цена товара: <input type="number" id="price"></label><br><br>
+<label>Скидка (%): <input type="number" id="discount"></label><br><br>
+
+<button onclick="calculate()">Рассчитать</button>
+
+<p id="result"></p>
+
+<script>
+    function calculate() {
+        const price = Number(document.getElementById('price').value);
+        const discount = Number(document.getElementById('discount').value);
+        const discountAmount = price * discount / 100;
+        const finalPrice = price - discountAmount;
+
+        document.getElementById('result').innerText =
+            `Скидка: ${discountAmount} ₽, к оплате: ${finalPrice} ₽`;
+    }
+</script>
+</body>
+</html>
