@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Интерактивная карточка</title>
+    <style>
+        .card {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 12px;
+            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-family: sans-serif;
+            text-align: center;
+        }
+        .card button {
+            margin-top: 15px;
+            padding: 8px 12px;
+            border: none;
+            background: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2 id="name">Марина</h2>
+    <p id="info">Возраст: 30</p>
+    <button onclick="toggleInfo()">Показать другое</button>
+</div>
+
+<script>
+    let isDefault = true;
+
+    function toggleInfo() {
+        const name = document.getElementById("name");
+        const info = document.getElementById("info");
+
+        if (isDefault) {
+            name.textContent = "Фронтендер";
+            info.textContent = "Пишет код и качает гит 💪";
+        } else {
+            name.textContent = "Марина";
+            info.textContent = "Возраст: 41";
+        }
+
+        isDefault = !isDefault;
+    }
+</script>
+</body>
+</html>
