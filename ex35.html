@@ -43,11 +43,12 @@
 <body>
 
 <h2>Обратная связь</h2>
-
-<input type="text" id="name" placeholder="Твоё имя">
-<textarea id="message" placeholder="Сообщение"></textarea>
-<button id="sendBtn" disabled>Отправить</button>
-
+<form>
+  <input type="email" id="email" placeholder="Твой email" />
+  <input type="text" id="name" placeholder="Твоё имя" />
+  <textarea id="message" placeholder="Сообщение"></textarea>
+  <button id="sendBtn" disabled>Отправить</button>
+</form>
 <div class="message" id="result"></div>
 
 <script>
