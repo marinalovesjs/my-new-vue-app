@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма обратной связи</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        input, textarea, button {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+            width: 300px;
+        }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2>Форма обратной связи</h2>
+
+<input type="text" id="name" placeholder="Твоё имя">
+<textarea id="message" placeholder="Сообщение"></textarea>
+<button onclick="sendMessage()">Отправить</button>
+
+<div class="result" id="result"></div>
+
+<script>
+    function sendMessage() {
+        const name = document.getElementById('name').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const result = document.getElementById('result');
+
+        if (!name || !message) {
+            result.textContent = "❗ Пожалуйста, заполните все поля.";
+            result.style.color = "red";
+        } else {
+            result.textContent = `✅ Спасибо, ${name}! Мы получили сообщение: "${message}"`;
+            result.style.color = "green";
+        }
+    }
+</script>
+
+</body>
+</html>
