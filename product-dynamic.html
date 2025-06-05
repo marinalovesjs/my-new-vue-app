@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Динамическая карточка</title>
+    <style>
+        .card {
+            width: 280px;
+            margin: 50px auto;
+            padding: 15px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            font-family: sans-serif;
+            text-align: center;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+        }
+        .card h2 {
+            font-size: 18px;
+            margin: 12px 0 6px;
+        }
+        .card p {
+            margin: 6px 0;
+            color: #333;
+        }
+        .card button {
+            margin-top: 12px;
+            padding: 8px 14px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .card button:hover {
+            background-color: #388e3c;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <img src="https://via.placeholder.com/280x180.png?text=Товар" alt="Product image">
+    <h2>Питательный крем “Glow 30+”</h2>
+    <p id="price">Цена: 1 190 ₽</p>
+    <button onclick="changePrice()">Сделать скидку</button>
+</div>
+
+<script>
+    function changePrice() {
+        const priceTag = document.getElementById('price');
+        priceTag.textContent = 'Цена: 790 ₽ (скидка!)';
+    }
+</script>
+</body>
+</html>
