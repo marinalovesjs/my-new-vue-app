@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Создай свою карточку</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        input, button { margin: 8px 0; padding: 6px; width: 200px; }
+        .info { margin-top: 15px; background: #f0f0f0; padding: 15px; border-radius: 8px; width: 280px; }
+    </style>
+</head>
+<body>
+
+<h2>Заполни информацию о себе</h2>
+
+<input type="text" id="name" placeholder="Имя">
+<br>
+<input type="number" id="age" placeholder="Возраст">
+<br>
+<input type="text" id="hobby" placeholder="Хобби">
+<br>
+<button onclick="showCard()">Показать карточку</button>
+
+<div id="result" class="info"></div>
+
+<script>
+    function showCard() {
+        const user = {
+            name: document.getElementById("name").value,
+            age: document.getElementById("age").value,
+            hobby: document.getElementById("hobby").value,
+        };
+
+        const output = `
+        <p><strong>Имя:</strong> ${user.name}</p>
+        <p><strong>Возраст:</strong> ${user.age}</p>
+        <p><strong>Хобби:</strong> ${user.hobby}</p>
+      `;
+
+        document.getElementById("result").innerHTML = output;
+    }
+</script>
+
+</body>
+</html>
