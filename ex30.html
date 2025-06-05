@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о человеке</title>
+    <style>
+        body { font-family: sans-serif; }
+        .info { background: #f5f5f5; padding: 15px; border-radius: 8px; width: 300px; }
+        .info p { margin: 8px 0; }
+    </style>
+</head>
+<body>
+
+<h1>Карточка пользователя</h1>
+<div class="info" id="userCard"></div>
+
+<script>
+    const user = {
+        name: "Марина",
+        age: 41,
+        city: "Екатеринбург",
+        hobby: "учусь быть фронтендером",
+        isOnline: true
+    };
+
+    const card = `
+      <p><strong>Имя:</strong> ${user.name}</p>
+      <p><strong>Возраст:</strong> ${user.age}</p>
+      <p><strong>Город:</strong> ${user.city}</p>
+      <p><strong>Хобби:</strong> ${user.hobby}</p>
+      <p><strong>Статус:</strong> ${user.isOnline ? "в сети 🟢" : "не в сети 🔴"}</p>
+    `;
+
+    document.getElementById("userCard").innerHTML = card;
+</script>
+
+</body>
+</html>
