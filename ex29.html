@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Массив слов</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Список любимых слов</h1>
+<ul id="wordsList"></ul>
+
+<script>
+    const words = ["кот", "вдохновение", "чай", "мороз", "улыбка", "мечта"];
+
+    const ul = document.getElementById("wordsList");
+
+    for (let i = 0; i < words.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = `${i + 1}) ${words[i]}`;
+        ul.appendChild(li);
+    }
+</script>
+
+</body>
+</html>
