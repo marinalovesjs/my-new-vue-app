@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор профессии</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        select, button { margin-top: 10px; padding: 8px; width: 220px; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2>Выбери профессию:</h2>
+<select id="job">
+    <option value="">-- выбери --</option>
+    <option value="frontend">Фронтенд-разработчик</option>
+    <option value="designer">Дизайнер</option>
+    <option value="qa">Тестировщик</option>
+    <option value="manager">Проджект-менеджер</option>
+</select>
+
+<br>
+<button onclick="showJob()">Показать</button>
+
+<div class="result" id="result"></div>
+
+<script>
+    function showJob() {
+        const value = document.getElementById("job").value;
+        const result = document.getElementById("result");
+
+        if (value === "") {
+            result.textContent = "❗ Пожалуйста, выбери профессию";
+            result.style.color = "red";
+        } else {
+            result.textContent = `✅ Ты выбрала: ${value}`;
+            result.style.color = "green";
+        }
+    }
+</script>
+
+</body>
+</html>
