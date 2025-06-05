@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мини-квиз</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        button { display: block; margin: 10px 0; padding: 8px; width: 200px; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2>Какой результат у выражения 2 + "2" в JavaScript?</h2>
+
+<button onclick="checkAnswer('22')">22</button>
+<button onclick="checkAnswer('4')">4</button>
+<button onclick="checkAnswer('NaN')">NaN</button>
+
+<div class="result" id="result"></div>
+
+<script>
+    function checkAnswer(answer) {
+        const correct = '22';
+        const result = document.getElementById('result');
+
+        if (answer === correct) {
+            result.textContent = '✅ Верно! 2 + "2" = "22", это конкатенация строки.';
+            result.style.color = 'green';
+        } else {
+            result.textContent = '❌ Неправильно. Попробуй ещё!';
+            result.style.color = 'red';
+        }
+    }
+</script>
+
+</body>
+</html>
