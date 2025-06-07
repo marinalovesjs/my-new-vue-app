@@ -5,34 +5,76 @@
   <title>Kanban-доска</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: "Segoe UI", sans-serif;
       display: flex;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 15px;
       padding: 20px;
-      background: #f9f9f9;
+      background: #e8f0fe;
     }
+
     .column {
       flex: 1;
-      background: #f4f4f4;
-      border-radius: 10px;
-      padding: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      min-width: 280px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
     }
+
+    .column:hover {
+      transform: translateY(-3px);
+    }
+
     .column h2 {
       text-align: center;
+      color: #444;
+      margin-bottom: 10px;
     }
+
     .task {
-      background: white;
-      margin: 5px 0;
-      padding: 10px;
-      border-radius: 5px;
-      box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      background: #fffdfb;
+      margin: 6px 0;
+      padding: 10px 12px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
       cursor: grab;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s ease;
     }
+
+    .task:hover {
+      background: #f1f1f1;
+    }
+
     input, button {
       width: 100%;
       margin-top: 10px;
-      padding: 6px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      background-color: #006eff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #0050cc;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        padding: 10px;
+      }
     }
   </style>
 </head>
@@ -84,7 +126,6 @@
 
     const delBtn = document.createElement("button");
     delBtn.textContent = "🗑️";
-    delBtn.style.float = "right";
     delBtn.style.border = "none";
     delBtn.style.background = "transparent";
     delBtn.style.cursor = "pointer";
