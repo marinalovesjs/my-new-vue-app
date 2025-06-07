@@ -2,19 +2,21 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Kanban Доска</title>
+  <title>Kanban-доска</title>
   <style>
     body {
       font-family: sans-serif;
       display: flex;
       gap: 10px;
       padding: 20px;
+      background: #f9f9f9;
     }
     .column {
       flex: 1;
       background: #f4f4f4;
       border-radius: 10px;
       padding: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
     .column h2 {
       text-align: center;
@@ -25,30 +27,51 @@
       padding: 10px;
       border-radius: 5px;
       box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      cursor: grab;
     }
     input, button {
       width: 100%;
       margin-top: 10px;
+      padding: 6px;
     }
   </style>
 </head>
 <body>
-<div class="column" id="todo">
+<div class="column">
   <h2>To Do</h2>
-  <div id="todo-tasks"></div>
+  <div id="todo-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
   <input type="text" id="new-task" placeholder="Новая задача">
   <button onclick="addTask()">Добавить</button>
 </div>
-<div class="column" id="in-progress">
+<div class="column">
   <h2>In Progress</h2>
-  <div id="in-progress-tasks"></div>
+  <div id="in-progress-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 </div>
-<div class="column" id="done">
+<div class="column">
   <h2>Done</h2>
-  <div id="done-tasks"></div>
+  <div id="done-tasks" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 </div>
 
 <script>
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  let taskIdCounter = tasks.length;
+
+  function addTask() {
+    const input = document.getElementById("new-task");
+    const taskText = input.value.trim();
+    if (taskText !== "") {
+      const taskData = {
+        id: "task-" + taskIdCounter++,
+        text: taskText,
+        column: "todo-tasks"
+      };
+      tasks.push(taskData);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      renderTask(taskData);
+      input.value = "";
+    }
+  }
+
   function renderTask(taskData) {
     const task = document.createElement("div");
     task.className = "task";
@@ -65,7 +88,6 @@
     delBtn.style.border = "none";
     delBtn.style.background = "transparent";
     delBtn.style.cursor = "pointer";
-
     delBtn.onclick = () => {
       task.remove();
       tasks = tasks.filter(t => t.id !== taskData.id);
@@ -78,7 +100,32 @@
     document.getElementById(taskData.column).appendChild(task);
   }
 
+  function allowDrop(ev) {
+    ev.preventDefault();
+  }
 
+  function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+  }
+
+  function drop(ev) {
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData("text");
+    const task = document.getElementById(data);
+    const dropTarget = ev.target;
+    const dropZone = dropTarget.classList.contains("task") ? dropTarget.parentNode : dropTarget;
+    dropZone.appendChild(task);
+
+    const taskIndex = tasks.findIndex(t => t.id === data);
+    if (taskIndex !== -1) {
+      tasks[taskIndex].column = dropZone.id;
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }
+
+  window.onload = () => {
+    tasks.forEach(taskData => renderTask(taskData));
+  };
 </script>
 </body>
 </html>
