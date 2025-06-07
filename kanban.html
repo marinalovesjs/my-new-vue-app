@@ -49,40 +49,33 @@
 </div>
 
 <script>
-  function addTask() {
-    const input = document.getElementById("new-task");
-    const taskText = input.value.trim();
+  function renderTask(taskData) {
+    const task = document.createElement("div");
+    task.className = "task";
+    task.id = taskData.id;
+    task.setAttribute("draggable", "true");
+    task.setAttribute("ondragstart", "drag(event)");
 
-    if (taskText !== "") {
-      // Создаём саму карточку
-      const task = document.createElement("div");
-      task.className = "task";
+    const text = document.createElement("span");
+    text.textContent = taskData.text;
 
-      // Создаём текст
-      const text = document.createElement("span");
-      text.textContent = taskText;
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "🗑️";
+    delBtn.style.float = "right";
+    delBtn.style.border = "none";
+    delBtn.style.background = "transparent";
+    delBtn.style.cursor = "pointer";
 
-      // Создаём кнопку удаления
-      const delBtn = document.createElement("button");
-      delBtn.textContent = "🗑️";
-      delBtn.style.float = "right";
-      delBtn.style.border = "none";
-      delBtn.style.background = "transparent";
-      delBtn.style.cursor = "pointer";
+    delBtn.onclick = () => {
+      task.remove();
+      tasks = tasks.filter(t => t.id !== taskData.id);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    };
 
-      // Когда нажимаем на 🗑️ — удаляется карточка
-      delBtn.onclick = () => task.remove();
+    task.appendChild(text);
+    task.appendChild(delBtn);
 
-      // Собираем карточку: сначала текст, потом кнопка
-      task.appendChild(text);
-      task.appendChild(delBtn);
-
-      // Добавляем в колонку
-      document.getElementById("todo-tasks").appendChild(task);
-
-      // Очищаем поле ввода
-      input.value = "";
-    }
+    document.getElementById(taskData.column).appendChild(task);
   }
 
 </script>
