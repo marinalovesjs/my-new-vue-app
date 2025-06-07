@@ -2,41 +2,27 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Форма с живой проверкой</title>
+  <title>Форма обратной связи</title>
   <style>
     body {
       font-family: sans-serif;
-      padding: 30px;
       background: #f2f2f2;
+      padding: 30px;
     }
-
+    form {
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
     input, textarea, button {
       display: block;
-      margin: 10px 0;
+      width: 100%;
+      margin-bottom: 15px;
       padding: 10px;
-      width: 300px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
       font-size: 16px;
-      transition: border-color 0.3s;
     }
-
-    .valid {
-      border-color: green;
-    }
-
-    .invalid {
-      border-color: red;
-    }
-
-    .message {
-      font-weight: bold;
-      margin-top: 15px;
-    }
-
     button:disabled {
-      background-color: #999;
-      cursor: not-allowed;
+      background: gray;
+      color: #ccc;
     }
   </style>
 </head>
@@ -49,6 +35,7 @@
   <textarea id="message" placeholder="Сообщение"></textarea>
   <button id="sendBtn" disabled>Отправить</button>
 </form>
+
 <div class="message" id="result"></div>
 
 <script>
@@ -57,24 +44,21 @@
   const sendBtn = document.getElementById('sendBtn');
   const result = document.getElementById('result');
 
-  function validateInput() {
-    const nameValid = nameInput.value.trim().length >= 2;
-    const msgValid = messageInput.value.trim().length >= 5;
-
-    nameInput.className = nameValid ? 'valid' : 'invalid';
-    messageInput.className = msgValid ? 'valid' : 'invalid';
-
-    sendBtn.disabled = !(nameValid && msgValid);
+  function checkForm() {
+    if (nameInput.value.trim() !== '' && messageInput.value.trim() !== '') {
+      sendBtn.disabled = false;
+    } else {
+      sendBtn.disabled = true;
+    }
   }
 
-  function sendMessage() {
-    result.textContent = `✅ Сообщение от ${nameInput.value.trim()} отправлено!`;
-    result.style.color = 'green';
-  }
+  nameInput.addEventListener('input', checkForm);
+  messageInput.addEventListener('input', checkForm);
 
-  nameInput.addEventListener('input', validateInput);
-  messageInput.addEventListener('input', validateInput);
-  sendBtn.addEventListener('click', sendMessage);
+  sendBtn.addEventListener('click', function(event) {
+    event.preventDefault(); // Чтобы не перезагружалась страница
+    result.textContent = 'Сообщение отправлено!';
+  });
 </script>
 
 </body>

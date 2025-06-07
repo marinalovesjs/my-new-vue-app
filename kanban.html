@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Kanban Доска</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      gap: 10px;
+      padding: 20px;
+    }
+    .column {
+      flex: 1;
+      background: #f4f4f4;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    .column h2 {
+      text-align: center;
+    }
+    .task {
+      background: white;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="column" id="todo">
+  <h2>To Do</h2>
+  <div id="todo-tasks"></div>
+  <input type="text" id="new-task" placeholder="Новая задача">
+  <button onclick="addTask()">Добавить</button>
+</div>
+<div class="column" id="in-progress">
+  <h2>In Progress</h2>
+  <div id="in-progress-tasks"></div>
+</div>
+<div class="column" id="done">
+  <h2>Done</h2>
+  <div id="done-tasks"></div>
+</div>
+
+<script>
+  function addTask() {
+    const input = document.getElementById("new-task");
+    const taskText = input.value.trim();
+
+    if (taskText !== "") {
+      // Создаём саму карточку
+      const task = document.createElement("div");
+      task.className = "task";
+
+      // Создаём текст
+      const text = document.createElement("span");
+      text.textContent = taskText;
+
+      // Создаём кнопку удаления
+      const delBtn = document.createElement("button");
+      delBtn.textContent = "🗑️";
+      delBtn.style.float = "right";
+      delBtn.style.border = "none";
+      delBtn.style.background = "transparent";
+      delBtn.style.cursor = "pointer";
+
+      // Когда нажимаем на 🗑️ — удаляется карточка
+      delBtn.onclick = () => task.remove();
+
+      // Собираем карточку: сначала текст, потом кнопка
+      task.appendChild(text);
+      task.appendChild(delBtn);
+
+      // Добавляем в колонку
+      document.getElementById("todo-tasks").appendChild(task);
+
+      // Очищаем поле ввода
+      input.value = "";
+    }
+  }
+
+</script>
+</body>
+</html>
