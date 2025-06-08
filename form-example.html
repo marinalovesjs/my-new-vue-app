@@ -7,7 +7,7 @@
         body {
             font-family: sans-serif;
             padding: 40px;
-            background: #f2f2fa;
+            background: #f0f4ff;
         }
 
         h1 {
@@ -52,6 +52,11 @@
             border-radius: 50%;
             display: none;
         }
+
+        #resetBtn {
+            margin-top: 20px;
+            background: crimson;
+        }
     </style>
 </head>
 <body>
@@ -59,6 +64,7 @@
 <h1>Введи своё имя:</h1>
 <input type="text" id="nameInput" placeholder="Марина">
 <button onclick="sayHello()">Сказать привет</button>
+<button id="resetBtn" onclick="resetGreeting()">Сбросить</button>
 
 <div id="greeting"></div>
 <img id="avatar" src="" alt="Avatar">
@@ -66,32 +72,47 @@
 <audio id="click-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_5e07b3c683.mp3"></audio>
 
 <script>
+    const nameInput = document.getElementById("nameInput");
+    const output = document.getElementById("greeting");
+    const avatar = document.getElementById("avatar");
+    const sound = document.getElementById("click-sound");
+
+    // При загрузке страницы — проверка localStorage
+    window.onload = function() {
+        const savedName = localStorage.getItem("userName");
+        if (savedName) {
+            greet(savedName);
+        }
+    }
+
     function sayHello() {
-        const name = document.getElementById("nameInput").value.trim();
-        const output = document.getElementById("greeting");
-        const avatar = document.getElementById("avatar");
-        const sound = document.getElementById("click-sound");
-
-        // Звук клика
-        sound.play();
-
+        const name = nameInput.value.trim();
         if (name) {
-            output.textContent = `Привет, ${name}! Рада тебя видеть 😊`;
-            output.style.opacity = 1;
-
-            // Показываем аватар только для определённых имён
-            if (name.toLowerCase() === "марина") {
-                avatar.src = "https://api.dicebear.com/7.x/avataaars/svg?seed=Marina";
-                avatar.style.display = "block";
-            } else {
-                avatar.style.display = "none";
-            }
-
+            localStorage.setItem("userName", name);
+            greet(name);
         } else {
             output.textContent = "Пожалуйста, введи имя.";
             output.style.opacity = 1;
             avatar.style.display = "none";
         }
+        sound.play();
+    }
+
+    function greet(name) {
+        output.textContent = `Привет, ${name}! Я тебя помню 😊`;
+        output.style.opacity = 1;
+
+        if (name.toLowerCase() === "марина") {
+            avatar.src = "https://api.dicebear.com/7.x/avataaars/svg?seed=Marina";
+            avatar.style.display = "block";
+        } else {
+            avatar.style.display = "none";
+        }
+    }
+
+    function resetGreeting() {
+        localStorage.removeItem("userName");
+        location.reload();
     }
 </script>
 
