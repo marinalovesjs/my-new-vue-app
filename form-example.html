@@ -7,11 +7,13 @@
         body {
             font-family: sans-serif;
             padding: 40px;
-            background: #f9f9ff;
+            background: #f2f2fa;
         }
+
         h1 {
             color: darkslateblue;
         }
+
         input {
             padding: 8px;
             font-size: 16px;
@@ -19,6 +21,7 @@
             border: 1px solid #ccc;
             width: 200px;
         }
+
         button {
             margin-left: 10px;
             padding: 8px 14px;
@@ -27,14 +30,27 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
+            transition: 0.3s;
         }
+
         button:hover {
             background-color: indigo;
+            transform: scale(1.05);
         }
+
         #greeting {
             margin-top: 20px;
             font-size: 20px;
             color: #333;
+            opacity: 0;
+            transition: opacity 0.8s ease-in;
+        }
+
+        #avatar {
+            margin-top: 20px;
+            max-width: 120px;
+            border-radius: 50%;
+            display: none;
         }
     </style>
 </head>
@@ -45,16 +61,36 @@
 <button onclick="sayHello()">Сказать привет</button>
 
 <div id="greeting"></div>
+<img id="avatar" src="" alt="Avatar">
+
+<audio id="click-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_5e07b3c683.mp3"></audio>
 
 <script>
     function sayHello() {
         const name = document.getElementById("nameInput").value.trim();
         const output = document.getElementById("greeting");
+        const avatar = document.getElementById("avatar");
+        const sound = document.getElementById("click-sound");
+
+        // Звук клика
+        sound.play();
 
         if (name) {
             output.textContent = `Привет, ${name}! Рада тебя видеть 😊`;
+            output.style.opacity = 1;
+
+            // Показываем аватар только для определённых имён
+            if (name.toLowerCase() === "марина") {
+                avatar.src = "https://api.dicebear.com/7.x/avataaars/svg?seed=Marina";
+                avatar.style.display = "block";
+            } else {
+                avatar.style.display = "none";
+            }
+
         } else {
             output.textContent = "Пожалуйста, введи имя.";
+            output.style.opacity = 1;
+            avatar.style.display = "none";
         }
     }
 </script>
