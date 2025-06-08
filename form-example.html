@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Приветствие</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 40px;
+            background: #f9f9ff;
+        }
+        h1 {
+            color: darkslateblue;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+        button {
+            margin-left: 10px;
+            padding: 8px 14px;
+            background-color: darkslateblue;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: indigo;
+        }
+        #greeting {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Введи своё имя:</h1>
+<input type="text" id="nameInput" placeholder="Марина">
+<button onclick="sayHello()">Сказать привет</button>
+
+<div id="greeting"></div>
+
+<script>
+    function sayHello() {
+        const name = document.getElementById("nameInput").value.trim();
+        const output = document.getElementById("greeting");
+
+        if (name) {
+            output.textContent = `Привет, ${name}! Рада тебя видеть 😊`;
+        } else {
+            output.textContent = "Пожалуйста, введи имя.";
+        }
+    }
+</script>
+
+</body>
+</html>
