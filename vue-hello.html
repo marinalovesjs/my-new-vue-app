@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue приветствие</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 30px;
+            background: #f8faff;
+        }
+        input, button {
+            font-size: 18px;
+            padding: 8px;
+            margin-right: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: darkslateblue;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: indigo;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <h1>Приветствие с Vue 💚</h1>
+    <input v-model="name" placeholder="Введи имя">
+    <button @click="sayHello">Сказать привет</button>
+
+    <h2 v-if="greeting">{{ greeting }}</h2>
+</div>
+
+<script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+            return {
+                name: '',
+                greeting: ''
+            }
+        },
+        methods: {
+            sayHello() {
+                if (this.name.trim()) {
+                    this.greeting = `Привет, ${this.name}! Добро пожаловать во Vue 😊`
+                } else {
+                    this.greeting = 'Пожалуйста, введи имя.'
+                }
+            }
+        }
+    }).mount('#app')
+</script>
+
+</body>
+</html>
