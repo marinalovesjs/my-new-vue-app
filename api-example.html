@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>API-пример</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: darkslateblue;
+        }
+        ul {
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
+<h1>Список пользователей</h1>
+<p>Данные загружаются с сервера...</p>
+<ul id="user-list"></ul>
 
+<script>
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(data => {
+            const list = document.getElementById("user-list");
+
+            data.forEach(user => {
+                const li = document.createElement("li");
+                li.textContent = `${user.name} (${user.email})`;
+                list.appendChild(li);
+            });
+        })
+        .catch(error => {
+            document.body.innerHTML += "<p>Произошла ошибка при загрузке данных</p>";
+            console.error("Ошибка:", error);
+        });
+</script>
 </body>
 </html>
