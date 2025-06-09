@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма с валидацией</title>
+    <link  rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Заполните форму</h1>
+<form id="myForm">
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <button type="submit">Отправить</button>
+    </form>
+<p id="message"></p>
+<script>
+    document.getElementById('myForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // отменяет перезагрузку страницы
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        if (name && email) {
+            document.getElementById("message").innerText = Спасибо, $ { name } !Мы свяжемся с вами на $ { email } ;
+        } else {
+            document.getElementById("message").innerText = "Пожалуйста, заполните все поля.";
+        }
+    });
+    </script>
+</body>
+</html>
