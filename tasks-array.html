@@ -1,0 +1,25 @@
+<h2>Мои задачи</h2>
+<input type="text" id="taskInput" placeholder=" Новая задача">
+<button onclick="addTask()">Добавить</button>
+<ul id="taskList"></ul>
+<script>
+    let tasks = [];
+    function addTask() {
+        const input = document.getElementById('taskInput');
+        const task = input.value.trim();
+        if (task ! == "") {
+            tasks.push(task);
+            renderTask();
+            input.value = "";
+        }
+    }
+    function renderTask() {
+        const list = document.getElementById('taskList');
+        list.innerHTML = "";// очищаем старый список
+        tasks.forEach(function (task,index) {
+            const li = document.createElement('li');
+            li.textContent = task;
+            list.appendChild(li);
+        });
+    }
+    </script>
