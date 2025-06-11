@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ToDo List</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 5px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📝 Мой ToDo-лист</h1>
+
+<input type="text" id="taskInput" placeholder="Введите задачу" />
+<button id="addBtn">Добавить</button>
+
+<ul id="taskList"></ul>
+
+<script>
+  const input = document.getElementById("taskInput");
+  const addBtn = document.getElementById("addBtn");
+  const list = document.getElementById("taskList");
+
+  addBtn.addEventListener("click", () => {
+    const text = input.value.trim();
+    if (text === "") return;
+
+    const li = document.createElement("li");
+    li.textContent = text;
+    list.appendChild(li);
+
+    input.value = "";
+  });
+</script>
+
+</body>
+</html>
