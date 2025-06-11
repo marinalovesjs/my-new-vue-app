@@ -1,25 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>ToDo List</title>
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    h1 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     input, button {
       padding: 10px;
       margin: 5px 0;
+      font-size: 16px;
+    }
+    input {
+      width: 70%;
+    }
+    button {
+      cursor: pointer;
     }
     ul {
       list-style: none;
       padding: 0;
     }
     li {
-      padding: 5px 0;
+      padding: 8px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+    }
+    .delete-btn {
+      margin-left: 10px;
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -27,7 +51,7 @@
 
 <h1>📝 Мой ToDo-лист</h1>
 
-<input type="text" id="taskInput" placeholder="Введите задачу" />
+<input type="text" id="taskInput" placeholder="Введите задачу">
 <button id="addBtn">Добавить</button>
 
 <ul id="taskList"></ul>
@@ -42,7 +66,19 @@
     if (text === "") return;
 
     const li = document.createElement("li");
-    li.textContent = text;
+
+    const span = document.createElement("span");
+    span.textContent = text;
+
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "❌";
+    delBtn.className = "delete-btn";
+    delBtn.addEventListener("click", () => {
+      li.remove();
+    });
+
+    li.appendChild(span);
+    li.appendChild(delBtn);
     list.appendChild(li);
 
     input.value = "";
