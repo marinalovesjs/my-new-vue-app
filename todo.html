@@ -61,10 +61,24 @@
   const addBtn = document.getElementById("addBtn");
   const list = document.getElementById("taskList");
 
+  // Загружаем задачи из localStorage при старте
+  window.addEventListener("load", () => {
+    const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    savedTasks.forEach(task => addTaskToList(task));
+  });
+
+  // При нажатии на кнопку
   addBtn.addEventListener("click", () => {
     const text = input.value.trim();
     if (text === "") return;
 
+    addTaskToList(text);
+    saveTask(text);
+    input.value = "";
+  });
+
+  // Функция добавления задачи в список
+  function addTaskToList(text) {
     const li = document.createElement("li");
 
     const span = document.createElement("span");
@@ -73,16 +87,32 @@
     const delBtn = document.createElement("button");
     delBtn.textContent = "❌";
     delBtn.className = "delete-btn";
+
     delBtn.addEventListener("click", () => {
       li.remove();
+      removeTask(text);
     });
 
     li.appendChild(span);
     li.appendChild(delBtn);
     list.appendChild(li);
+  }
 
-    input.value = "";
-  });
+  // Сохраняем задачу в localStorage
+  function saveTask(text) {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.push(text);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
+  // Удаляем задачу из localStorage
+  function removeTask(text) {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks = tasks.filter(task => task !== text);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+</script>
+
 </script>
 
 </body>
