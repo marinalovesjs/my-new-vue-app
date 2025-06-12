@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Фильтр задач</title>
+    <script src="https://unpkg.com/vue@3"></script>
+            <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+    <h1>📝 Мои задачи</h1>
+
+    <div>
+        <button @click="filter = 'all'">Все</button>
+        <button @click="filter = 'active'">Активные</button>
+        <button @click="filter = 'done'">Завершённые</button>
+    </div>
+
+    <ul>
+        <li v-for="(task, index) in filteredTasks" :key="index">
+            <input type="checkbox" v-model="task.done">
+            <span :class="{ done: task.done }">{{ task.text }}</span>
+        </li>
+    </ul>
+
+    <div class="summary">
+        Всего: {{ tasks.length }} |
+        Выполнено: {{ doneCount }} |
+        Осталось: {{ remainingCount }}
+    </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
