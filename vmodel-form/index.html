@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление задач</title>
+  <script src="https://unpkg.com/vue@3"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>📝 Добавление задач</h1>
+
+  <input type="text" v-model="newTask" placeholder="Введите задачу" />
+  <button @click="addTask">Добавить</button>
+
+  <ul>
+    <li v-for="(task, index) in tasks" :key="index">
+      <input type="checkbox" v-model="task.done">
+      <span :class="{ done: task.done }">{{ task.text }}</span>
+    </li>
+  </ul>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление задач</title>
+  <script src="https://unpkg.com/vue@3"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <h1>📝 Добавление задач</h1>
+
+  <input type="text" v-model="newTask" placeholder="Введите задачу" />
+  <button @click="addTask">Добавить</button>
+
+  <ul>
+    <li v-for="(task, index) in tasks" :key="index">
+      <input type="checkbox" v-model="task.done">
+      <span :class="{ done: task.done }">{{ task.text }}</span>
+    </li>
+  </ul>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>

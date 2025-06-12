@@ -1,0 +1,29 @@
+const { createApp } = Vue;
+
+createApp({
+data() {
+return {
+newTask: '',
+tasks: []
+};
+},
+methods: {
+addTask() {
+const trimmed = this.newTask.trim();
+if (trimmed) {
+this.tasks.push({ text: trimmed, done: false });
+this.newTask = ''; // очистить поле
+}
+}
+}
+}).mount('#app');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
