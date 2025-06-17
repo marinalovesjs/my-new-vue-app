@@ -1,5 +1,8 @@
 <template>
-  <ContactForm />
+  <div>
+    <h1>Контактная форма</h1>
+    <ContactForm />
+  </div>
 </template>
 
 <script>
